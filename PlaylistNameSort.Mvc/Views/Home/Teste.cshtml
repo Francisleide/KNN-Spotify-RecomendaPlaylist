@@ -1,0 +1,31 @@
+﻿@model IList<PlaylistNameSort.Domain.Models.PlaylistPronta>
+
+@{
+    ViewBag.Title = "Teste";
+}
+
+<h2>Playlists geradas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.Nome</th>
+            @foreach(var play in item.audios)
+            {
+                <td>@play.FullTrack.Name</td>
+            }
+
+
+
+        </tr>
+    }
+
+</table>
