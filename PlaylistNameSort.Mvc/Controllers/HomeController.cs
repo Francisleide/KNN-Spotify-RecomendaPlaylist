@@ -59,7 +59,7 @@ namespace PlaylistNameSort.Mvc.Controllers
 
                 List<PlaylistPronta> playlistProntas = spotifyService.Knn(metaAudios);
 
-                return View(playlistProntas);
+                return View("Teste",playlistProntas);
             }
             catch (Exception)
             {

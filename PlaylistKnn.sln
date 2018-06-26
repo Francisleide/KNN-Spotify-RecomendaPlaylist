@@ -5,16 +5,12 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistNameSort.Mvc", "PlaylistNameSort.Mvc\PlaylistNameSort.Mvc.csproj", "{2F78808D-8705-4111-A8A9-C7433090B7DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistNameSort.Mvc.Tests", "PlaylistNameSort.Mvc.Tests\PlaylistNameSort.Mvc.Tests.csproj", "{9BB75122-0721-4DDC-B6C2-0FD15F002DDF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{03B8D1C4-25FC-4691-93DE-B93C2AF8847F}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistNameSort.Domain", "PlaylistNameSort.Domain\PlaylistNameSort.Domain.csproj", "{837A07AC-9454-453D-8B8E-62CB8875941C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistNameSort.Domain.Tests", "PlaylistNameSort.Domain.Tests\PlaylistNameSort.Domain.Tests.csproj", "{84003369-C2EE-49E4-8A52-2A06C5514ABC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,18 +22,10 @@ Global
 		{2F78808D-8705-4111-A8A9-C7433090B7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F78808D-8705-4111-A8A9-C7433090B7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F78808D-8705-4111-A8A9-C7433090B7DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BB75122-0721-4DDC-B6C2-0FD15F002DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BB75122-0721-4DDC-B6C2-0FD15F002DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BB75122-0721-4DDC-B6C2-0FD15F002DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BB75122-0721-4DDC-B6C2-0FD15F002DDF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{837A07AC-9454-453D-8B8E-62CB8875941C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{837A07AC-9454-453D-8B8E-62CB8875941C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{837A07AC-9454-453D-8B8E-62CB8875941C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{837A07AC-9454-453D-8B8E-62CB8875941C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84003369-C2EE-49E4-8A52-2A06C5514ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84003369-C2EE-49E4-8A52-2A06C5514ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84003369-C2EE-49E4-8A52-2A06C5514ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84003369-C2EE-49E4-8A52-2A06C5514ABC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
