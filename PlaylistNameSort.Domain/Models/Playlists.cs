@@ -20,6 +20,8 @@ namespace PlaylistNameSort.Domain.Models
         public String Name { get; set; }
         [JsonProperty("owner")]
         public PublicProfile Owner { get; set; }
+        [JsonProperty("uris")]
+        public List<string> Uris { get; set; }
     }
 
     public class PlaylistPronta

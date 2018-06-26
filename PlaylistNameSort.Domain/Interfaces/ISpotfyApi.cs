@@ -5,5 +5,6 @@
         string Token { get; set; }
 
         T GetSpotifyType<T>(string url);
+        
     }
 }

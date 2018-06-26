@@ -72,23 +72,7 @@ namespace PlaylistNameSort.Domain.Services
             }
             return metaAudios;
         }
-        /*
-        int k = MeuK(metaAudios);
-        metaAudios = calcDistancias(metaAudios, k);
-        var plays = Knn(metaAudios, k);
 
-        foreach (var play in plays)
-        {
-            foreach (var audio1 in play.audios)
-            {
-                string url = string.Format("https://api.spotify.com/v1/tracks/" + audio1.Id);
-                FullTrack fullTrack = _spotifyApi.GetSpotifyType<FullTrack>(url);
-                audio1.FullTrack = fullTrack;
-            }
-        }
-        return plays;
-    }
-    */
 
         //Determinar o valor de K
 
@@ -179,11 +163,18 @@ namespace PlaylistNameSort.Domain.Services
 
             return playlistProntas;
         }
+        public Playlist PostPlays(PlaylistPronta playlistPronta, string userId)
+        {
+           // Playlist play = new Playlist();
+          //  play.Name = playlistPronta.Nome;
+           
+            
+            string url = "https://api.spotify.com/v1/users/" + userId + "/playlists/" + "name\":\"" + playlistPronta.Nome + "\", \"public\":false}";
+            Playlist playlist = _spotifyApi.GetSpotifyType<Playlist>(url);
+            return playlist;
+        }
 
     }
-
-
-
 
 }
 

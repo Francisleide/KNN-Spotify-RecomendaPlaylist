@@ -19,7 +19,6 @@ namespace PlaylistNameSort.Mvc.App_Start
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
-
         /// <summary>
         /// Starts the application
         /// </summary>
@@ -28,6 +27,7 @@ namespace PlaylistNameSort.Mvc.App_Start
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
+         //   bootstrapper.Initialize(CreateKernelDois);
         }
         
         /// <summary>
@@ -44,12 +44,12 @@ namespace PlaylistNameSort.Mvc.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
+            
             var kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -59,7 +59,7 @@ namespace PlaylistNameSort.Mvc.App_Start
                 throw;
             }
         }
-
+       
         public static void RegisterRootUrl(string rootUrl)
         {
 
@@ -74,13 +74,13 @@ namespace PlaylistNameSort.Mvc.App_Start
             //It would be great to get these values from some confi, but cannot access web.config from here
             string uriCallback = "http://localhost:12029/Home/GenerateNameSortList";
             string clientId = "215f619c52da4befaa569f12a2108b41";
-
             kernel.Bind(typeof(ISpotifyApi)).To(typeof(SpotifyApi));
             kernel.Bind(typeof(SpotifyAuthViewModel)).To(typeof(SpotifyAuthViewModel))
                 .WithConstructorArgument("clientId", clientId)
                 .WithConstructorArgument("redirectUri", uriCallback)
                 .WithConstructorArgument("state", "")
                 .WithConstructorArgument("scope", Scope.USER_READ_RECENTLY_PLAYED);
-        }        
+        }
+       
     }
 }

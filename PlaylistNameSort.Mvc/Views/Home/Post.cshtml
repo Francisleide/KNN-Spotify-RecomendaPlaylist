@@ -1,0 +1,16 @@
+﻿@model IList<String>
+
+@{
+    ViewBag.Title = "Post";
+}
+
+<h2>Post</h2>
+
+<script type="text/javascript" language="javascript">
+    var hashes = window.location.hash;
+    hashes = hashes.replace('#', '?');
+    if (hashes !== "")
+        window.location = hashes;
+</script>
+
+<h1><a href=@ViewBag.AuthUri class="btn btn-primary btn-lg">Ver no Spotify!</a></h1>
