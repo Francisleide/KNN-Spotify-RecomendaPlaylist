@@ -44,15 +44,6 @@ namespace PlaylistNameSort.Mvc.Controllers
                 SpotifyUser spotifyUser = spotifyService.GetUserProfile();
                 ViewBag.UserName = spotifyUser.DisplayName;
 
-                //Get user playlists ids
-                //   Playlists playlists = spotifyService.GetPlaylists(spotifyUser.UserId);
-
-                //Get all tracks from user
-                //   List<string> tracks = spotifyService.GetTracksAndArtistsFromPlaylists(playlists);
-
-                //Generate the new playlist 
-                //  List<string> newPlayList = spotifyService.GenerateNewPlaylist(spotifyUser.DisplayName, tracks);
-
                 Tracks tocadasRecentemente = spotifyService.GetRecentlyPlayed();
                 List<Audio> metaAudios = spotifyService.GetAudioTracks(tocadasRecentemente);
                 // var x = spotifyService.MeuK(metaAudios);
@@ -100,25 +91,15 @@ namespace PlaylistNameSort.Mvc.Controllers
                 SpotifyService spotifyService = new SpotifyService(_spotifyApi);
                 //Get user_id and user displayName
                 SpotifyUser spotifyUser = spotifyService.GetUserProfile();
-                // ViewBag.UserName = spotifyUser.DisplayName;
+                 ViewBag.UserName = spotifyUser.DisplayName;
                 foreach (var playlistPronta in playlistProntas)
                 {
-                    spotifyService.PostPlays(playlistPronta, spotifyUser.UserId);
+                    spotifyService.PostPlays(playlistPronta, access_token,spotifyUser.UserId);
                  }
                 
-
-                //Get user playlists ids
-                //   Playlists plays = spotifyService.GetPlaylists(spotifyUser.UserId);
-
-                //Get all tracks from user
-                // List<string> faixas = spotifyService.GetTracksAndArtistsFromPlaylists(plays);
-
-                //  var lista = spotifyService.GetRecentlyPlayed();
-                // var plays = spotifyService.GetAudioTracks(lista);
-
                 return View();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View("Error");
             }

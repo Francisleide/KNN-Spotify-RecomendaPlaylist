@@ -18,7 +18,7 @@
     {
         <tr>
             <th>@item.Nome</th>
-            @foreach(var play in item.audios)
+            @foreach (var play in item.audios)
             {
                 <td>@play.FullTrack.Name</td>
             }
@@ -29,4 +29,5 @@
     }
 
 </table>
-<h1><a href=@ViewBag.AuthUri class="btn btn-primary btn-lg">Ver no Spotify!</a></h1>
+<h3>@ViewBag.UserName , suas playlists está pronta! Corre pra o spotify para conferir e aproveita e responde esta pesquisa de satisfação! </h3>
+<a href="#">Pesquisa</a>

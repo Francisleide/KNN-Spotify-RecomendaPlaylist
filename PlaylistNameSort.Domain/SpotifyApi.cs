@@ -9,7 +9,7 @@ using System.Web;
 
 namespace PlaylistNameSort.Domain
 {
-    public class SpotifyApi : ISpotifyApi
+    public class SpotifyApi 
     {
         public string Token { get; set; }
 
@@ -30,6 +30,40 @@ namespace PlaylistNameSort.Domain
                 WebRequest request = WebRequest.Create(url);
                 request.Method = "GET";
                 request.Headers.Set("Authorization", "Bearer" + " " + Token);
+                request.ContentType = "application/json; charset=utf-8";
+
+                T type = default(T);
+
+                using (WebResponse response = request.GetResponse())
+                {
+                    using (Stream dataStream = response.GetResponseStream())
+                    {
+                        using (StreamReader reader = new StreamReader(dataStream))
+                        {
+                            string responseFromServer = reader.ReadToEnd();
+                            type = JsonConvert.DeserializeObject<T>(responseFromServer);
+                        }
+                    }
+                }
+                return type;
+            }
+            catch (WebException ex)
+            {
+                return default(T);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public T PostSpotifyType<T>(string url, string PToken)
+        {
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "POST";
+                request.Headers.Set("Authorization", "Bearer" + " " + PToken);
                 request.ContentType = "application/json; charset=utf-8";
 
                 T type = default(T);

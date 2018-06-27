@@ -1,8 +1,10 @@
-﻿using PlaylistNameSort.Domain.Interfaces;
+﻿using Newtonsoft.Json;
+using PlaylistNameSort.Domain.Interfaces;
 using PlaylistNameSort.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace PlaylistNameSort.Domain.Services
 {
@@ -126,12 +128,12 @@ namespace PlaylistNameSort.Domain.Services
             int cont = 0;
             List<PlaylistPronta> playlistProntas = new List<PlaylistPronta>();
             PlaylistPronta playPronta;
-            for (int l = 0; l < 5; l++)
+            for (int l = 0; l < 2; l++)
             {
                 cont++;
                 List<Audio> audiosPraPlays = new List<Audio>();
                 playPronta = new PlaylistPronta();
-                playPronta.Nome = "Minha playlist barril " + cont;
+                playPronta.Nome = "Minha Playlist" + cont;
                 int qMusicas = 0;
                 for (int m = 0; m < audios.Count(); m++)
                 {
@@ -154,7 +156,7 @@ namespace PlaylistNameSort.Domain.Services
                         audiosPraPlays.Add(audios[l].Distancias[m].Audio);
                         qMusicas++;
                     }
-                    if (qMusicas == 10) break;
+                    if (qMusicas == 15) break;
 
                 }
                 playPronta.audios = audiosPraPlays;
@@ -163,14 +165,37 @@ namespace PlaylistNameSort.Domain.Services
 
             return playlistProntas;
         }
-        public Playlist PostPlays(PlaylistPronta playlistPronta, string userId)
+        public Playlist PostPlays(PlaylistPronta playlistPronta, string access_token, string userId)
         {
-           // Playlist play = new Playlist();
-          //  play.Name = playlistPronta.Nome;
-           
+            Tracks play = new Tracks();
+            List<Track> items = new List<Track>();
+            string json2 = "{\"uris\":[";
+            string pedacoJson2 = "\"spotify:track:";
+            string outropedaco = "";
+            for (int i=0; i<playlistPronta.audios.Count(); i++) 
+            {
+                var t = new Track();
+                t.FullTrack = playlistPronta.audios[i].FullTrack;
+                items.Add(t);
+                
+                if(i== playlistPronta.audios.Count() - 1)
+                {
+                    outropedaco = outropedaco + pedacoJson2 + t.FullTrack.Id;
+                }
+                else
+                {
+                    outropedaco = outropedaco + pedacoJson2 + t.FullTrack.Id + "\",";
+                }       
+            }
             
-            string url = "https://api.spotify.com/v1/users/" + userId + "/playlists/" + "name\":\"" + playlistPronta.Nome + "\", \"public\":false}";
-            Playlist playlist = _spotifyApi.GetSpotifyType<Playlist>(url);
+            play.Items = items;
+            string url = "https://api.spotify.com/v1/users/" + userId + "/playlists";
+            string json = "{\"name\":\"" +playlistPronta.Nome+ "\",\"description\":\"Playlist gerada por algoritmo usando IA\", \"public\": false}";
+
+            Playlist playlist = _spotifyApi.PostSpotifyType<Playlist>(url, access_token, json);
+            string url2 = url + "/" + playlist.Id + "/tracks";
+            json2 = json2 + outropedaco + "\"]}";
+            Tracks tracks = _spotifyApi.PostSpotifyType<Tracks>(url2, access_token, json2);
             return playlist;
         }
 
