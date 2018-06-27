@@ -52,7 +52,7 @@ namespace PlaylistNameSort.Mvc.Controllers
                 playlistProntas = spotifyService.Knn(metaAudios);
 
                 string uriCallback = "http:%2F%2Fplaylistlistknn.azurewebsites.net%2FHome%2FPost";
-                string clientId = "215f619c52da4befaa569f12a2108b41";
+                string clientId = spotifyUser.UserId;
                 string completo = "https://accounts.spotify.com/en/authorize?client_id=" + clientId +
                      "&response_type=token&redirect_uri=" + uriCallback +
                      "&state=&scope=" + Scope.PLAYLIST_MODIFY_PRIVATE.GetStringAttribute(" ") +
@@ -60,7 +60,7 @@ namespace PlaylistNameSort.Mvc.Controllers
                 ViewBag.AuthUri = completo;
 
                 View("Teste", playlistProntas);
-                Post(access_token, error, playlistProntas);
+                Post(access_token, error, playlistProntas, spotifyUser);
                 return View("Teste", playlistProntas);
             }
             catch (Exception)
@@ -70,10 +70,10 @@ namespace PlaylistNameSort.Mvc.Controllers
 
         }
 
-        public ActionResult Post(string access_token, string error, List<PlaylistPronta> playlistProntas)
+        public ActionResult Post(string access_token, string error, List<PlaylistPronta> playlistProntas, SpotifyUser spotifyUser)
         {
-            string uriCallback = "http:%2F%2Fplaylistlistknn.azurewebsites.net%2FHome%2FPost";
-            string clientId = "215f619c52da4befaa569f12a2108b41";
+            string uriCallback = "http:%2F%2Fplaylistlistknn.azurewebsites.net%2FHome%2FPost"; 
+            string clientId = spotifyUser.UserId;
             string completo = "https://accounts.spotify.com/en/authorize?client_id=" + clientId +
                  "&response_type=token&redirect_uri=" + uriCallback +
                  "&state=&scope=" + Scope.PLAYLIST_MODIFY_PRIVATE.GetStringAttribute(" ") +
@@ -90,7 +90,7 @@ namespace PlaylistNameSort.Mvc.Controllers
                 _spotifyApi.Token = access_token;
                 SpotifyService spotifyService = new SpotifyService(_spotifyApi);
                 //Get user_id and user displayName
-                SpotifyUser spotifyUser = spotifyService.GetUserProfile();
+               // SpotifyUser spotifyUser = spotifyService.GetUserProfile();
                  ViewBag.UserName = spotifyUser.DisplayName;
                 foreach (var playlistPronta in playlistProntas)
                 {
