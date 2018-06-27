@@ -51,7 +51,7 @@ namespace PlaylistNameSort.Mvc.Controllers
 
                 playlistProntas = spotifyService.Knn(metaAudios);
 
-                string uriCallback = "http:%2F%2Flocalhost:12029%2FHome%2FPost";
+                string uriCallback = "http:%2F%2Fplaylistlistknn.azurewebsites.net%2FHome%2FPost";
                 string clientId = "215f619c52da4befaa569f12a2108b41";
                 string completo = "https://accounts.spotify.com/en/authorize?client_id=" + clientId +
                      "&response_type=token&redirect_uri=" + uriCallback +
@@ -72,7 +72,7 @@ namespace PlaylistNameSort.Mvc.Controllers
 
         public ActionResult Post(string access_token, string error, List<PlaylistPronta> playlistProntas)
         {
-            string uriCallback = "http:%2F%2Flocalhost:12029%2FHome%2FPost";
+            string uriCallback = "http:%2F%2Fplaylistlistknn.azurewebsites.net%2FHome%2FPost";
             string clientId = "215f619c52da4befaa569f12a2108b41";
             string completo = "https://accounts.spotify.com/en/authorize?client_id=" + clientId +
                  "&response_type=token&redirect_uri=" + uriCallback +
