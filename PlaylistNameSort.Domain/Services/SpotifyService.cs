@@ -141,7 +141,7 @@ namespace PlaylistNameSort.Domain.Services
 
                     for (int n = 0; n < m; n++)
                     {
-                        if (audios[l].Distancias[m].Audio != audios[l].Distancias[n].Audio)
+                        if (audios[l].Distancias[m].Audio.Id != audios[l].Distancias[n].Audio.Id)
                         {
                             continue;
                         }
@@ -156,7 +156,7 @@ namespace PlaylistNameSort.Domain.Services
                         audiosPraPlays.Add(audios[l].Distancias[m].Audio);
                         qMusicas++;
                     }
-                    if (qMusicas == 15) break;
+                    if (qMusicas == 8) break;
 
                 }
                 playPronta.audios = audiosPraPlays;

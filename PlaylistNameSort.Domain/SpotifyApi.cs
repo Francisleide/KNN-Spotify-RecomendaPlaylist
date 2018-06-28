@@ -9,16 +9,16 @@ using System.Web;
 
 namespace PlaylistNameSort.Domain
 {
-    public class SpotifyApi 
+    public class SpotifyApiOld 
     {
         public string Token { get; set; }
 
-        public SpotifyApi()
+        public SpotifyApiOld()
         {
 
         }                
 
-        public SpotifyApi(string token)
+        public SpotifyApiOld(string token)
         {
             Token = token;
         }

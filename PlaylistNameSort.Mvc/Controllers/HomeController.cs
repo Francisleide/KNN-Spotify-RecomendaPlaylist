@@ -72,7 +72,7 @@ namespace PlaylistNameSort.Mvc.Controllers
 
         public ActionResult Post(string access_token, string error, List<PlaylistPronta> playlistProntas, SpotifyUser spotifyUser)
         {
-            string uriCallback = "http:%2F%2Fplaylistlistknn.azurewebsites.net%2FHome%2FPost"; 
+            string uriCallback = Server.MapPath("~") + "/Home/Post"; 
             string clientId = spotifyUser.UserId;
             string completo = "https://accounts.spotify.com/en/authorize?client_id=" + clientId +
                  "&response_type=token&redirect_uri=" + uriCallback +
@@ -101,7 +101,7 @@ namespace PlaylistNameSort.Mvc.Controllers
             }
             catch (Exception e)
             {
-                return View("Error");
+                return View("Error",e);
             }
 
         }
